@@ -12,7 +12,6 @@ class User extends CI_Controller {
 	public function index(){
 		//load session library
 		$this->load->library('session');
- 
 		//restrict users to go back to login if session has been set
 		if($this->session->userdata('user')){
 			redirect('home');
@@ -30,10 +29,13 @@ class User extends CI_Controller {
 		$password = $_POST['password'];
  
 		$data = $this->users_model->login($email, $password);
- 
-		if($data){
+		if($data['permission'] == '2'){
 			$this->session->set_userdata('user', $data);
-			redirect('home');
+			redirect('receptionist'); //this function goes to routs file and sends receptionist as parameter
+		}
+		elseif($data['permission'] == '1'){
+			$this->session->set_userdata('user', $data);
+			redirect('doctor');
 		}
 		else{
 			header('location:'.base_url().'user');
@@ -41,25 +43,70 @@ class User extends CI_Controller {
 		} 
 	}
  
-	public function home(){
+	public function receptionist(){
 		//load session library
 		$this->load->library('session');
  
-		//restrict users to go to home if not logged in
+		//restrict users to go to receptionist if not logged in
 		if($this->session->userdata('user')){
-			$this->load->view('home');
+			$this->load->view('receptionist/dashboard');
 		}
 		else{
 			redirect('/');
 		}
  
 	}
+	
+	public function doctor(){
+		//load session library
+		$this->load->library('session');
  
+		//restrict users to go to receptionist if not logged in
+		if($this->session->userdata('user')){
+			$this->load->view('doctor/dashboard');
+		}
+		else{
+			redirect('/');
+		}
+ 
+	}
+
 	public function logout(){
 		//load session library
 		$this->load->library('session');
 		$this->session->unset_userdata('user');
 		redirect('user');
 	}
- 
+	public function registration(){
+		$params = file_get_contents('php://input');
+        $params = json_decode($params);
+        $_POST = (array) $params;
+		$data = $this->users_model->register($_POST);
+		echo json_encode($data);
+        exit;
+	}
+	public function followUpPatientSearch(){
+		$params = file_get_contents('php://input');
+        $params = json_decode($params);
+        $_POST = (array) $params;	
+		$data = $this->users_model->followUpPatientSearch($_POST);
+		echo json_encode($data);
+        exit;
+	}
+	public function getAppointments(){
+		$params = file_get_contents('php://input');
+        $params = json_decode($params);
+        $_POST = (array) $params;	
+		$data = $this->users_model->getAppointments($_POST);
+		echo json_encode($data);
+        exit;
+	}
+	public function deletePatient(){
+		$params = file_get_contents('php://input');
+        $params = json_decode($params);
+        $_POST = (array) $params;	
+		$data = $this->users_model->deletePatient($_POST);
+		echo json_encode($data);
+        exit;
+	}
 }

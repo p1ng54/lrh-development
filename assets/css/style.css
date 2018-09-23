@@ -774,7 +774,7 @@ p:focus {
 a, button {
   text-decoration: none;
   outline: none !important;
-  color: #878787;
+  color: #333;
   -webkit-transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
@@ -2236,5 +2236,70 @@ header .form-inline {
           padding: 0; }
         .right-panel .content #bootstrap-data-table_wrapper .table td, .right-panel .content #bootstrap-data-table_wrapper .table th {
           padding: 5px; } }
+.white_tabset {
+  /* .tab-content{
+      background-color: #fff;
+      padding: 20px;
+      height: 100vh;
+  }
+  .nav-tabs{
+      border: none;
+      background-color: #e9ecef;
+  }
+  .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover{
+      background-color: red;
+      border: none;
+  } */ }
+  .white_tabset a:hover, .white_tabset a:focus {
+    text-decoration: none;
+    outline: none; }
+  .white_tabset .nav-tabs {
+    border-bottom: 1px solid #c4c4c4;
+    background-color: #fff; }
+  .white_tabset .nav-tabs > li > a {
+    border-radius: 0px;
+    border: 1px solid #e4e4e4;
+    border-top: 2px solid #e4e4e4;
+    border-right: 0px none;
+    margin-right: 0px;
+    padding: 8px 17px;
+    transition: 0.3s ease;
+    background: #F8F8F8;
+    color: #222222; }
+  .white_tabset .nav-tabs > li:last-child {
+    border-right: 1px solid #e4e4e4; }
+  .white_tabset .nav-tabs > li > a:hover {
+    border: 1px solid #e4e4e4;
+    border-top: 2px solid #46ee97;
+    border-right: 0px none;
+    background-color: #ffffff; }
+  .white_tabset .nav-tabs > li.active > a,
+  .white_tabset .nav-tabs > li.active > a:focus,
+  .white_tabset .nav-tabs > li.active > a:hover {
+    border-top: 2px solid #46ee97;
+    color: #222222;
+    border-right: 0px none;
+    background-color: #ffffff; }
+  .white_tabset .tab-content > .tab-pane {
+    border: 1px solid #c4c4c4;
+    border-top: 0px none;
+    padding: 20px;
+    line-height: 22px;
+    background-color: #ffffff; }
+  .white_tabset .nav-tabs > li.active:hover > a {
+    border-top-color: #46ee97; }
+
+.table thead tr th {
+  font-weight: 600; }
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd; }
+
+.table tbody tr:last-child {
+  border-bottom: 1px solid #e5e5e5; }
+
+.border_t5 {
+  border-top: 5px solid #e5e5e5; }
 
 /*# sourceMappingURL=style.css.map */

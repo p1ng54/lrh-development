@@ -1,0 +1,1 @@
+CREATE TABLE `lrh`.`lrh_patients` ( `id` INT(11) NOT NULL AUTO_INCREMENT , `full_name` VARCHAR(255) NOT NULL , `relative_name` VARCHAR(255) NOT NULL , `gender` VARCHAR(255) NOT NULL , `phone` INT(30) NOT NULL , `weight` INT(11) NOT NULL , `height` INT(11) NOT NULL , `date_of_birth` DATE NOT NULL , `address` VARCHAR(255) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;

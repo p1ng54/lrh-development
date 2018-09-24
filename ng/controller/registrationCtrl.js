@@ -1,4 +1,4 @@
-app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,uibDateParser) {
+app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,ModalService) {
   $scope.today = function() {
 	  console.log("date");
     $scope.patient.dob = new Date();
@@ -102,7 +102,18 @@ app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,uibDat
      $scope.reset = function () {
       $scope.patient = {};
     }
-
+  $scope.openModal = function(){
+    ModalService.showModal({
+      templateUrl: CONFIG.APIURL + "ng/views/partial/reg-date-timemodal.html",
+      controller: "appointmentCtrl",
+      preClose: (modal) => { modal.element.modal('hide'); }
+    }).then(function(modal) {
+      modal.element.modal();
+      modal.close.then(function(result) {
+        $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
+      });
+    });
+  };
   });
   
   app.controller('searchCtrl' ,function ($scope, $http, CONFIG,toastr,uibDateParser) {

@@ -1,7 +1,9 @@
-var app = angular.module('hospitalApp',['ui.bootstrap','toastr']);
-app.controller('mainController', ['$scope', function ($scope) {
- }])
+var app = angular.module('hospitalApp',['ngTouch','ngAnimate','ui.bootstrap','toastr','angularModalService']);
 app.constant('CONFIG', {
-    APIURL: "http://localhost/LRH/",
-    FOLDER: "",
+	APIURL: "http://localhost/LRH/",
+	FOLDER: "",
 });
+
+app.controller('mainController', function ($scope) {
+
+})

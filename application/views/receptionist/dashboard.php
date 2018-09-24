@@ -1,60 +1,60 @@
 <?php $this->load->view('include/header-receptionist'); ?>
-  <div class="content mt-3 mb-4">
-    <div class="col-sm-12">                
-      <uib-tabset class="white_tabset" active="activeJustified" justified="true">
-        <uib-tab index="0" heading="New Patient Registration">
-          <div ng-controller="registrationCtrl">
-            <form>
-             <div class="form-row">
-               <div class="form-group col-md-12">
-                 <h4 class="border-bottom pb-2">Patient personal details</h4>
-               </div>
+<div class="content mt-3 mb-4">
+  <div class="col-sm-12">                
+    <uib-tabset class="white_tabset" active="activeJustified" justified="true">
+      <uib-tab index="0" heading="New Patient Registration">
+        <div ng-controller="registrationCtrl">
+          <form>
+           <div class="form-row">
+             <div class="form-group col-md-12">
+               <h4 class="border-bottom pb-2">Patient personal details</h4>
              </div>
-             <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Full Name</label>
-                <input type="text" class="form-control" ng-model="patient.fullName" >
-              </div>
-              <div class="form-group col-md-6">
-                <label>Spouse/Parent's Name</label>
-                <input type="text" class="form-control" ng-model="patient.relativeName">
-              </div>
+           </div>
+           <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Full Name</label>
+              <input type="text" class="form-control" ng-model="patient.fullName" >
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Gender</label>
-                <select class="form-control" ng-model="patient.gender" >
-                  <option value="" selected>Select</option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                </select>
-              </div>
-              <div class="form-group col-md-6">
-                <label>Phone Number</label>
-                <input type="text" class="form-control" ng-model="patient.phone" >
-              </div>
+            <div class="form-group col-md-6">
+              <label>Spouse/Parent's Name</label>
+              <input type="text" class="form-control" ng-model="patient.relativeName">
             </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Gender</label>
+              <select class="form-control" ng-model="patient.gender" >
+                <option value="" selected>Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Phone Number</label>
+              <input type="text" class="form-control" ng-model="patient.phone" >
+            </div>
+          </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Weight(in Kg)</label>
-                <input type="text" class="form-control" ng-model="patient.weight">
-              </div>
-              <div class="form-group col-md-6">
-                <label>Height</label>
-                <input type="text" class="form-control" ng-model="patient.height" >
-              </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Weight(in Kg)</label>
+              <input type="text" class="form-control" ng-model="patient.weight">
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label>Date of Birth</label>
-                <div class="input-group date" id="dob" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" ng-modal="patient.dob" data-target="#dob"/>
-                    <div class="input-group-append" data-target="#dob" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
+            <div class="form-group col-md-6">
+              <label>Height</label>
+              <input type="text" class="form-control" ng-model="patient.height" >
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Date of Birth</label>
+              <div class="input-group date" id="dob" data-target-input="nearest">
+                <input type="text" class="form-control datetimepicker-input" ng-modal="patient.dob" data-target="#dob"/>
+                <div class="input-group-append" data-target="#dob" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
-              </div>         
+              </div>
+            </div>         
           </div>
           <div class="form-group">
             <label>Address</label>
@@ -156,15 +156,16 @@
 </uib-tab>
 <uib-tab index="3" heading="Requested Appointment">
  <div ng-controller="appointmentCtrl">
-   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Appointment Date</label>
-      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="appointment.date" ng-click="opendate()"
-      is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-
-    </div>
-    <div class="form-group col-md-6">
-      <button ng-click="getAppointments()" class="btn btn-primary">Get Appointments</button>
+   <div class="form-inline">
+    <div class="form-group mb-2">
+      <label class="mr-2">Appointment Date</label>
+      <div class="input-group date" id="appointment" data-target-input="nearest">
+        <input type="text" class="form-control datetimepicker-input" ng-modal="appointment.date" data-target="#appointment"/>
+        <div class="input-group-append" data-target="#appointment" data-toggle="datetimepicker">
+          <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+      </div>
+      <button ng-click="getAppointments()" class="btn btn-primary ml-2">Get Appointments</button>
     </div>
   </div>
   <table class="table border_t5 table-hover">

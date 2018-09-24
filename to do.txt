@@ -1,0 +1,4 @@
+shoaib this the url for pick date time only have a look
+its gives html and jquery code
+I'v included html in page and jquery into footer
+https://tempusdominus.github.io/bootstrap-4/Usage/

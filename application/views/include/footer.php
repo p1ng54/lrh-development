@@ -18,16 +18,10 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lib/tempusdominus-bootstrap-4.min.js"></script>
     <script type="text/javascript">
         jQuery(function () {
-           jQuery('#dob').datetimepicker({
-            format: 'L'
+             jQuery('#dob').datetimepicker({
+                    format: 'L'
+            });            
         });
-           $('#registrantionTime').datetimepicker({
-            format: 'LT'
-        });
-           $('#registrantionDate').datetimepicker({
-            format: 'L'
-        });
-       });
-   </script>
+    </script>
 </body>
 </html>

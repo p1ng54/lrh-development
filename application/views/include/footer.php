@@ -19,7 +19,7 @@
     <script type="text/javascript">
         jQuery(function () {
              jQuery('#dob').datetimepicker({
-                    format: 'L'
+                    format: 'L',                   
             });            
         });
     </script>

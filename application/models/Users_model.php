@@ -11,6 +11,12 @@
 		}
 		
 		public function register($params){
+			
+			$date = explode(' ',$params['dob'])[0];
+			$date = str_replace('/','-',$date);
+			$tmp = explode('-',$date);
+			$date = $tmp[2].'-'.$tmp[0].'-'.$tmp[1];
+			$params['dob'] = $date;
 			$insert = array(
 				'full_name'		=>(isset($params['fullName']))?$params['fullName']:"",
 				'relative_name'	=>(isset($params['relativeName']))?$params['relativeName']:"",
@@ -33,12 +39,13 @@
 					);
 			}
 			try{
+				
 				$find = $this->db->get_where('lrh_patients', $get);
 				if($find->row_array() == null){
 					//$sql = $this->db->set($insert)->get_compiled_insert('lrh_patients');
 					// return $sql;
 					$sql = $this->db->insert('lrh_patients', $insert);
-					return $sql;
+					return "id =".$this->db->insert_id();
 				}
 				else
 					return 1;
@@ -48,6 +55,33 @@
 				return $e->getMessage();
 			}
 		}
+		public function setAppointment($params){	
+			$date = explode(' ',$params['dateTime'])[0];
+			$date = str_replace('/','-',$date);
+			$tmp = explode('-',$date);
+			$date = $tmp[2].'-'.$tmp[0].'-'.$tmp[1];
+			$time = explode(' ',$params['dateTime'])[1];
+			$time = explode(' ',$time)[0];
+			$id = $params['id'];
+			$id = trim($id);
+			$insert = array(
+				'patient_id'		=>(isset($id))?$id:"",
+				'appointment_date'	=>(isset($date))?$date:"",
+				'appointment_time'		=>(isset($time))?$time:""
+				);
+			try{
+				//$sql = $this->db->set($insert)->get_compiled_insert('lrh_patients');return $sql;
+				$sql = $this->db->insert('lrh_appointment', $insert);
+				return $sql;
+				//$sql = $this->db->set($insert)->get_compiled_insert('lrh_patients'); check sql	
+			}
+			catch(Exception $e){
+				return $e->getMessage();
+			}
+		}
+
+		
+		
 		public function deletePatient($params){
 			return $params;
 		}
@@ -83,7 +117,11 @@
 		}
 
 		public function getAppointments($params){
-			$date = explode('T',$params['date'])[0];
+			$date = explode(' ',$params['date'])[0];
+			$date = str_replace('/','-',$date);
+			$tmp = explode('-',$date);
+			$date = $tmp[2].'-'.$tmp[0].'-'.$tmp[1];
+			//return $date;
 			$where = array(
 				'appointment_date' => $date
 			);

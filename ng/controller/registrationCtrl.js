@@ -1,67 +1,5 @@
 app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,ModalService) {
-  $scope.today = function() {
-	  console.log("date");
-    $scope.patient.dob = new Date();
-  };
-  $scope.patient = {};
-  //$scope.patient.dob = new Date();
-  $scope.today();
-
-  $scope.clear = function() {
-    $scope.dob = null;
-  };
-
-  $scope.inlineOptions = {
-    customClass: getDayClass,
-    minDate: new Date(),
-    showWeeks: true
-  };
-
-  $scope.dateOptions = {
-    //dateDisabled: disabled,
-    formatYear: 'yy',
-    maxDate: new Date(2030, 12, 31),
-    minDate: new Date(),
-    startingDay: 1
-  };
-
-  // Disable weekend selection
-  function disabled(data) {
-    var date = data.date,
-      mode = data.mode;
-    return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-  }
-
-  $scope.opendate = function() {
-    $scope.popup1.opened = true;
-  };
-
- $scope.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
-  $scope.format = $scope.formats[1];
-  $scope.altInputFormats = ['M!/d!/yyyy'];
-
-  $scope.popup1 = {
-    opened: false
-  };
-
-  function getDayClass(data) {
-    var date = data.date,
-      mode = data.mode;
-    if (mode === 'day') {
-      var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-      for (var i = 0; i < $scope.events.length; i++) {
-        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-        if (dayToCheck === currentDay) {
-          return $scope.events[i].status;
-        }
-      }
-    }
-
-    return '';
-  }
-  
+  $scope.takeAppointment = false;
   $scope.patient = {};
   $scope.loading = false;
   $scope.registerPatient = function () {
@@ -81,18 +19,27 @@ app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,ModalS
 		toastr.error("Error: Please provide Patient's phone");
 		return;
 	}
+	if($scope.patient.dob == '' || $scope.patient.dob == null || $scope.patient.dob == undefined){
+		toastr.error("Error: Please provide Patient's Date of Birth");
+		return;
+	}
     $scope.loading = true;
        $http.post(CONFIG.APIURL + "user/registration/", $scope.patient)
-            .then(function successCallback(response){            
-                if(response.data === "true"){
+            .then(function successCallback(response){
+				if(!(response.data.search < 0)){
 					toastr.success("Patient registerd Successfully");
-					$scope.reset();
+					var id = response.data;
+					id = id.split('=')[1];
+					id = id.split('"')[0];
+					$scope.id = id;
+					$scope.takeAppointment = true;
 				}	
 				else if(response.data === "1"){
 					toastr.error("Error: Patient Already Exists");
 				}
 				else
 					toastr.error("Error: registeration failed");
+				
             }, function errorCallback(response){
                 
                  toastr.error("Error");
@@ -101,19 +48,61 @@ app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,ModalS
 	 
      $scope.reset = function () {
       $scope.patient = {};
+	  $scope.appointment = {};
+	  $scope.takeAppointment = false;
     }
-  $scope.openModal = function(){
-    ModalService.showModal({
-      templateUrl: CONFIG.APIURL + "ng/views/partial/reg-date-timemodal.html",
-      controller: "appointmentCtrl",
-      preClose: (modal) => { modal.element.modal('hide'); }
-    }).then(function(modal) {
-      modal.element.modal();
-      modal.close.then(function(result) {
-        $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
-      });
-    });
-  };
+  // $scope.openModal = function(){
+    // ModalService.showModal({
+      // templateUrl: CONFIG.APIURL + "ng/views/partial/reg-date-timemodal.html",
+      // controller: "setAppointmentCtrl",
+	  // resolve: {
+		  // parentScope : function(){
+			// return $scope
+		// }
+	  // },
+      // preClose: (modal) => { modal.element.modal('hide'); }
+    // }).then(function(modal) {
+      // modal.element.modal();
+      // modal.close.then(function(result) {
+        // $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
+      // });
+    // });
+  // };
+	$scope.confirmAppointment = function(){
+		
+		if($scope.appointment.dateTime == '' || $scope.appointment.dateTime == null || $scope.appointment.dateTime == undefined){
+			toastr.error("Error: Please provide Appointment's Date and Time");
+			return;
+		}
+		$scope.appointment.id = $scope.id;
+		console.log($scope.appointment);
+		$http.post(CONFIG.APIURL + "user/setAppointment/", $scope.appointment)
+            .then(function successCallback(response){
+					$scope.reset();
+            }, function errorCallback(response){
+                
+                 toastr.error("Error", response.error);
+            });
+	}
+  });
+  
+  app.controller('setAppointmentCtrl' ,function ($scope,parentScope, $http, CONFIG,toastr,uibDateParser) {
+	console.log(parentScope);
+	$scope.confirmAppointment = function(){
+		
+		if($scope.appointment.dateTime == '' || $scope.appointment.dateTime == null || $scope.appointment.dateTime == undefined){
+			toastr.error("Error: Please provide Appointment's Date and Time");
+			return;
+		}
+		console.log($scope.appointment);
+		$http.post(CONFIG.APIURL + "user/setAppointment/", $scope.appointment)
+            .then(function successCallback(response){ 
+				$scope.patients = response.data;
+            }, function errorCallback(response){
+                
+                 toastr.error("Error", response.error);
+            });
+	}
   });
   
   app.controller('searchCtrl' ,function ($scope, $http, CONFIG,toastr,uibDateParser) {
@@ -150,69 +139,8 @@ app.controller('registrationCtrl' ,function ($scope, $http, CONFIG,toastr,ModalS
   });
   
   app.controller('appointmentCtrl' ,function ($scope, $http, CONFIG,toastr,uibDateParser) {
-	$scope.today = function() {
-		$scope.dt = new Date();
-	};
 	$scope.appointment = {};
-	$scope.appointment.date = new Date();
-	$scope.today();
-
-	$scope.clear = function() {
-		console.log("SDSD");
-		$scope.dt = null;
-	};
-
-	$scope.inlineOptions = {
-		customClass: getDayClass,
-		minDate: new Date(),
-		showWeeks: true
-	};
-
-	$scope.dateOptions = {
-		//dateDisabled: disabled,
-		formatYear: 'yy',
-		maxDate: new Date(2030, 12, 31),
-		minDate: new Date(),
-		startingDay: 1
-	};
-
-	// Disable weekend selection
-	function disabled(data) {
-		var date = data.date,
-		mode = data.mode;
-		return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-	}
-
-	$scope.opendate = function() {
-		$scope.popup1.opened = true;
-	};
-
-	$scope.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
-	$scope.format = $scope.formats[1];
-	$scope.altInputFormats = ['M!/d!/yyyy'];
-
-	$scope.popup1 = {
-		opened: false
-	};
-
-	function getDayClass(data) {
-		var date = data.date,
-		mode = data.mode;
-		if (mode === 'day') {
-		var dayToCheck = new Date(date).setHours(0,0,0,0);
-
-		for (var i = 0; i < $scope.events.length; i++) {
-        var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
-
-        if (dayToCheck === currentDay) {
-          return $scope.events[i].status;
-        }
-      }
-    }
-
-    return '';
-  }
-  
+	
   $scope.loading = false;
 	$scope.searchCriteria = {};
 	$scope.getAppointments = function () {

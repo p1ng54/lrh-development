@@ -85,6 +85,14 @@ class User extends CI_Controller {
 		echo json_encode($data);
         exit;
 	}
+	public function setAppointment(){
+		$params = file_get_contents('php://input');
+        $params = json_decode($params);
+        $_POST = (array) $params;
+		$data = $this->users_model->setAppointment($_POST);
+		echo json_encode($data);
+        exit;
+	}
 	public function followUpPatientSearch(){
 		$params = file_get_contents('php://input');
         $params = json_decode($params);
@@ -106,7 +114,7 @@ class User extends CI_Controller {
         $params = json_decode($params);
         $_POST = (array) $params;	
 		$data = $this->users_model->deletePatient($_POST);
-		echo json_encode($data);
+		echo json_encode('0'.$data);
         exit;
 	}
 }

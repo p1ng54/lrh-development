@@ -49,12 +49,21 @@
             <div class="form-group col-md-6">
               <label>Date of Birth</label>
               <div class="input-group date" id="dob" data-target-input="nearest">
-                <input type="text" class="form-control datetimepicker-input" ng-modal="patient.dob" data-target="#dob"/>
+                <input type="text" class="form-control datetimepicker-input" ng-model="patient.dob" data-target="#dob"/>
                 <div class="input-group-append" data-target="#dob" data-toggle="datetimepicker">
                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
               </div>
-            </div>         
+            </div> 
+			<div class="form-group col-md-6" ng-show="takeAppointment">
+              <label>Appointment Date and Time</label>
+              <div class="input-group date" id="dateTime" data-target-input="nearest">
+                <input type="text"  class="form-control datetimepicker-input" ng-model="appointment.dateTime" data-target="#dateTime"/>
+                <div class="input-group-append" data-target="#dateTime" data-toggle="datetimepicker">
+                  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                </div>
+              </div>
+            </div>			
           </div>
           <div class="form-group">
             <label>Address</label>
@@ -113,7 +122,7 @@
           </div>
         </div> -->
         <button ng-click="registerPatient()" class="btn btn-primary">Register Patient</button>
-        <button type="button" class="btn btn-danger" ng-click="openModal()">Open Modal</button>
+        <button ng-show="takeAppointment" type="button" class="btn btn-danger" ng-click="confirmAppointment()"> Confirm Appointment Date and Time</button>
       </form>
     </div>
   </uib-tab>
@@ -160,7 +169,7 @@
     <div class="form-group mb-2">
       <label class="mr-2">Appointment Date</label>
       <div class="input-group date" id="appointment" data-target-input="nearest">
-        <input type="text" class="form-control datetimepicker-input" ng-modal="appointment.date" data-target="#appointment"/>
+        <input type="text" class="form-control datetimepicker-input" ng-model="appointment.date" data-target="#appointment"/>
         <div class="input-group-append" data-target="#appointment" data-toggle="datetimepicker">
           <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>

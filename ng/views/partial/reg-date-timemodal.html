@@ -10,7 +10,7 @@
             <div class="form-group col-md-12">
               <label>Date and Time</label>
                 <div class="input-group date" id="dateTime" data-target-input="nearest">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#dateTime"/>
+                    <input type="text" class="form-control datetimepicker-input" ng-model="appointment.dateTime" data-target="#dateTime"/>
                     <div class="input-group-append" data-target="#dateTime" data-toggle="datetimepicker">
                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                     </div>
@@ -20,8 +20,8 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="button" ng-click="close(true)" class="btn btn-primary" data-dismiss="modal">Confirm</button>
-        <button type="button" ng-click="close(false)" class="btn btn-danger" data-dismiss="modal">Cancel</button>        
+        <button type="button" ng-click="confirmAppointment()" class="btn btn-primary">Confirm</button>
+        <button type="button" ng-click="close(false)" class="btn btn-danger" data-dismiss="model">Cancel</button>        
       </div>
     </div>
   </div>

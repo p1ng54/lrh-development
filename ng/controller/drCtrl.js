@@ -33,7 +33,7 @@ app.controller('drContoller' ,function ($scope, $http, CONFIG,toastr,ModalServic
        ModalService.showModal({
        templateUrl: CONFIG.APIURL + "ng/views/partial/take-historymodal.html",
        controller: "closeContoller",
-       bodyClass: "modal-lg",
+       bodyClass: "lg-modal",
 
      resolve: {
        parentScope : function(){

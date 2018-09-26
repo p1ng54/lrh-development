@@ -762,7 +762,7 @@ div[class*="col-"] {
 
 p {
   font-size: 16px;
-  font-family: 'Open Sans' sans-serif;
+  margin-bottom: 4px;
   font-weight: 400;
   line-height: 24px;
   color: #878787; }
@@ -818,6 +818,9 @@ textarea {
 
 /* Global Styles */
 /* Main Styles */
+.modal-lg .modal-dialog {
+  max-width: 900px; }
+
 .basix-container {
   display: table;
   min-height: 100vh;
@@ -1511,16 +1514,6 @@ header .form-inline {
   color: #d2d2d2; }
 
 /* Button Reset */
-.btn, .button {
-  display: inline-block;
-  font-weight: 400;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  transition: all .15s ease-in-out;
-  border-radius: 0;
-  cursor: pointer; }
-
 /* Icons */
 .icon-section {
   margin: 0 0 3em;
@@ -2301,5 +2294,39 @@ header .form-inline {
 
 .border_t5 {
   border-top: 5px solid #e5e5e5; }
+
+.nav-tabs--vertical {
+  border-bottom: none;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-flow: column nowrap; }
+
+.nav-tabs--left {
+  margin: 0; }
+
+.vertical-tabset .tab-content {
+  padding: 0px 20px; }
+
+.nav-tabs--left .nav-item + .nav-item {
+  margin-top: .25rem; }
+
+.nav-tabs--left .nav-link {
+  transition: border-color .125s ease-in;
+  white-space: nowrap; }
+
+.nav-tabs--left .nav-link:hover {
+  background-color: #f7f7f7;
+  border-color: transparent; }
+
+.nav-tabs--left .nav-link.active {
+  border-bottom-color: #ddd;
+  border-right-color: #fff;
+  border-bottom-left-radius: 0.25rem;
+  border-top-right-radius: 0;
+  margin-right: -1px; }
+
+.nav-tabs--left .nav-link.active:hover {
+  background-color: #fff;
+  border-color: #0275d8 #fff #0275d8 #0275d8; }
 
 /*# sourceMappingURL=style.css.map */

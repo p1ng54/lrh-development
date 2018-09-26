@@ -1,0 +1,28 @@
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Take History</h4>
+        <button type="button" class="close" ng-click="close(false)" data-dismiss="modal" aria-hidden="true">&times;</button>        
+      </div>
+      <div class="modal-body">                         
+        <form action="" method="post" class="">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Full Name</label>
+              <input type="text" class="form-control" ng-model="patient.fullName" >
+            </div>
+            <div class="form-group col-md-6">
+              <label>Spouse/Parent's Name</label>
+              <input type="text" class="form-control" ng-model="patient.relativeName">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" ng-click="confirmAppointment()" class="btn btn-primary">Submit</button>
+        <button type="button" ng-click="close(false)" class="btn btn-danger" data-dismiss="model">Cancel</button>        
+      </div>
+    </div>
+  </div>
+</div>

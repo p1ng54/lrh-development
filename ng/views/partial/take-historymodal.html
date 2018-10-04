@@ -7,15 +7,479 @@
       </div>
       <div class="modal-body">                         
         <form action="" method="post" class="">
-          <div class="form-row">
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.newHistory" ng-true-value="Y" ng-false-value="N">
+              <label class="form-check-label" for="gridCheck">
+                Take new History
+              </label>
+            </div>
+          </div> 
+          <div class="row" ng-if="formData.newHistory == 'Y'"> <!-- use this condition for all below -->
+            <div class="form-group col-md-6">
+              <label>Diagnosis</label>
+              <select class="form-control" ng-model="formData.oldDiagnosis" >
+                <option value="" selected>Select</option>
+                <option value="RA">Rheumatiod arthritis</option>
+                <option value="OST">Osteoarthirites</option>
+                <option value="PA">Osoriatic arthritis</option>
+                <option value="SLE">SLE</option>
+                <option value="CTD">Connective tissue disease</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Any other Diagnosis</label>
+              <input type="text" class="form-control" ng-model="formData.oldDiagnosisText" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Previous Medication</label>
+              <select class="form-control" ng-model="formData.oldMeds" >
+                <option value="" selected>Select</option>
+                <option value="ST">Steroids</option>
+                <option value="NSAIDS">NSAIDs</option>
+                <option value="METH">Methotrexate</option>
+                <option value="SULF">Sulfasalazine</option>
+                <option value="HC">Hydroxychloroquin</option>
+                <option value="LFD">Leflunomide</option>
+                <option value="ATN">Azathioprine</option>
+                <option value="TNF">Ethanercept TNF</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Other Old Meds</label>
+              <input type="text" class="form-control" ng-model="formData.oldMedsText" >
+            </div>
+          </div>        
+          <div class="row">
             <div class="form-group col-md-6">
               <label>Full Name</label>
-              <input type="text" class="form-control" ng-model="patient.fullName" >
+              <input type="text" class="form-control" ng-model="formData.fullName" >
             </div>
             <div class="form-group col-md-6">
               <label>Spouse/Parent's Name</label>
-              <input type="text" class="form-control" ng-model="patient.relativeName">
+              <input type="text" class="form-control" ng-model="formData.relativeName">
             </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.jointPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Joint Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.handPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Hand Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.handPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lHandPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Hand Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.handPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rHandPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Hand Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.wristPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Wrist Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y' && formData.wristPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lWristPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Wrist Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.wristPain == 'Y'">          
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rWristPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Wrist Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.elbowPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Elbow Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y' && formData.elbowPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lElbowPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Elbow Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.elbowPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rElbowPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Elbow Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.shoulderPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Shoulder Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.shoulderPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lShoudlerPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Shoulder Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y' && formData.shoulderPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rShoudlerPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Shoulder Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.hipsPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Hips Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.hipsPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lHipPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Hips Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.hipsPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rHipPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Hips Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.kneesPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Knees Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.kneesPain == 'Y'">
+              <div class="form-check" >
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lKneePain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Knee Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.kneesPain == 'Y'">
+              <div class="form-check" >
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rKneePain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Knee Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.anklesPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Ankles Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y' && formData.anklesPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lAnklesPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Ankle Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"   ng-if="formData.jointPain == 'Y' && formData.anklesPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rAnklesPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Ankle Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y'">
+              <div class="form-check" >
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.toesPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Toes Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.toesPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.lToePain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Left Hand Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.jointPain == 'Y' && formData.toesPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rToePain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Right Hand Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4"  ng-if="formData.jointPain == 'Y'">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.neckPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Back Neck Pain
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.jointSwelling" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Joint Swelling
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.morningStiffness" ng-true-value="Y" ng-false-value="N">
+              <label class="form-check-label" for="gridCheck">
+                Early Morning Stiffness
+              </label>
+            </div>
+            
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.namaz" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Pain During Namaz
+                </label>
+              </div> 
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6" ng-if="formData.morningStiffness == 'Y'">
+              <label>Early Morning Stiffness for</label>
+              <input type="text" class="form-control" ng-model="patient.morningStiffnessDuration">
+            </div>
+            <div class="form-group col-md-6" ng-if="formData.namaz == 'Y'">
+              <label>Pain Intensity</label>
+              <select class="form-control" ng-model="formData.namazPain" >
+                <option value="" selected>Select</option>
+                <option value="WP">Without Pain</option>
+                <option value="NWP">Normal with Pain</option>
+                <option value="SG">Sitting On Ground</option>
+                <option value="SC">Sitting On Chair</option>
+              </select>
+            </div>
+
+            <div class="form-group col-md-6" ng-if="formData.precedingInjury == 'Y'">
+              <label>Preceding Infection</label>
+              <select class="form-control" ng-model="formData.precedingInfection" >
+                <option value="" selected>Select</option>
+                <option value="THRT">Throat</option>
+                <option value="CHST">Chest</option>
+                <option value="ABD">Abdomen</option>
+                <option value="DIRH">Diarrhoea</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <label>Eyes</label>
+              <select class="form-control" ng-model="formData.eyes" >
+                <option value="" selected>Select</option>
+                <option value="RE">Red</option>
+                <option value="DRY">Dry</option>
+                <option value="GTY">Gritty</option>
+                <option value="PV">Poor Vision</option>
+                <option value="LV">Loss of vision</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <label>Muscular Weakness</label>
+              <select class="form-control" ng-model="formData.muscularWeakness" >
+                <option value="" selected>Select</option>
+                <option value="AO">All Over</option>
+                <option value="MLD">Mild</option>
+                <option value="UGU">Unable to get up</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-12">
+              <label>Last Menstrual Period</label>
+              <input type="text" class="form-control" ng-model="formData.menstrualPeriod" >
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.sleepDisturbed" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Sleep disturbed by Ilness
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.precedingInjury" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Preceeding Ilness
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.precedingInjury == 'Y'">
+              <div class="form-check">
+                <label>Preceding Injury Detail</label>
+                <input type="text" class="form-control" ng-model="patient.precedingInjuryDuration" >
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.oralUlcer" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Oral Ulcer
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.dryMouth" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Dry Mouth
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.raynauds" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Raynauds Present
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.rash" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Skin Rash Present
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4" ng-if="formData.rash == 'Y'">
+              <label>Skin Rash</label>
+              <input type="text" class="form-control" ng-model="formData.skinRash" >
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.skinTightning" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Skin tightning Present
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.chestPain" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Chest Pain Present
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="gridCheck" ng-model="formData.breathShortness" ng-true-value="Y" ng-false-value="N">
+                <label class="form-check-label" for="gridCheck">
+                  Shortness of Breath
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label>Cough</label>
+              <select class="form-control" ng-model="formData.coughType" >
+                <option value="" selected>Select</option>
+                <option value="DY">Dry</option>
+                <option value="WPM">With Phlegm</option>
+                <option value="WB">With Blood</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Abdominal Pain</label>
+              <select class="form-control" ng-model="formData.adbPainType" >
+                <option value="" selected>Select</option>
+                <option value="DRH">Diarrhoea</option>
+                <option value="BDRH">Bloody Diarrhoea</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Hair Loss</label>
+              <select class="form-control" ng-model="formData.hairLoss" >
+                <option value="" selected>Select</option>
+                <option value="MDRT">Moderate</option>
+                <option value="BPS">Bald Patches</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <!-- radio button start-->
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                  Default radio
+                </label>
+              </div>
+            </div>
+            <div class="form-group col-md-4">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">
+                  Second default radio
+                </label>
+              </div>
+            </div>
+            <!-- radio button close-->
           </div>
         </form>
       </div>

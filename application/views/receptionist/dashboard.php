@@ -55,7 +55,7 @@
                 </div>
               </div>
             </div> 
-			<div class="form-group col-md-6" ng-show="takeAppointment">
+            <div class="form-group col-md-6" ng-show="takeAppointment">
               <label>Appointment Date and Time</label>
               <div class="input-group date" id="dateTime" data-target-input="nearest">
                 <input type="text"  class="form-control datetimepicker-input" ng-model="appointment.dateTime" data-target="#dateTime"/>
@@ -144,11 +144,11 @@
   <table class="table border_t5 table-hover" ng-if="patients.length >0">
    <thead>
     <tr>
-     <th>S.NO</th>
-     <th>Name</th>
-     <th>Phone Number</th>
-     <th>Gender</th>
-     <th>Action</th>
+     <th width="10%">S.NO</th>
+     <th width="30%">Name</th>
+     <th width="20%">Phone Number</th>
+     <th width="20%">Gender</th>
+     <th width="20%">Action</th>
    </tr>
  </thead>
  <tbody>
@@ -157,7 +157,27 @@
     <td>{{patient.full_name}}</td> 
     <td>{{patient.phone}}</td> 
     <td>{{patient.gender}}</td> 
-    <td><button type="button" class="btn btn-danger btn-sm" ng-click="deletePatient(patient)">Delete</button></td>
+    <td class="position_relative">
+      <button type="button" class="btn btn-danger btn-sm" ng-click="deletePatient(patient)">Delete</button>
+      <button type="button" class="btn btn-primary btn-sm" ng-click="showDiv = !showDiv">Schedule Appointment</button>
+      <form class="slide-form" action="#" ng-show="showDiv" >
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label>Date and Time</label>
+            <div class="input-group date" id="scheduleAppointment" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" ng-model="appointment.scheduleAppointment" data-target="#scheduleAppointment"/>
+              <div class="input-group-append" data-target="#scheduleAppointment" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+            </div>           
+          </div>  
+           <div class="col-md-12">
+              <button type="button" ng-click="confirmAppointment()" class="btn btn-primary">Confirm</button>
+              <button type="button" ng-click="showDiv = !showDiv" class="btn btn-danger" data-dismiss="model">Cancel</button>
+               </div>                      
+        </div>
+      </form>
+    </td>
   </tr>
 </tbody>
 </table>

@@ -50,49 +50,43 @@
           <h4>Today Appointments</h4>
         </div>
         <div class="card-body">  
-          <div class="d-flex flex-row vertical-tabset">
-            <ul class="nav nav-tabs nav-tabs--vertical nav-tabs--left" role="navigation">
-              <li class="nav-item">
-                <a href="#lorem" class="nav-link active" data-toggle="tab" role="tab" aria-controls="lorem">Lorem</a>
-              </li>
-              <li class="nav-item">
-                <a href="#ipsum" class="nav-link" data-toggle="tab" role="tab" aria-controls="ipsum">Ipsum</a>
-              </li>
-
-            </ul>
-            <div class="tab-content">
-              <div class="tab-pane fade show active" id="lorem" role="tabpanel">
-                <div class="d-flex justify-content-between pb-2 border-bottom">
-                  <h1>Lorem</h1>
-                  <button type="button" class="btn btn-sm btn-success" ng-click="takeHistory()">Take History</button>
-                </div>               
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde eos impedit, sed, modi pariatur in maxime explicabo rem voluptatibus quo ullam nam veritatis aut natus accusamus ut beatae praesentium dignissimos.</p>               
-              </div>
-              <div class="tab-pane fade" id="ipsum" role="tabpanel">
-               <div class="d-flex justify-content-between pb-2 border-bottom">
-                  <h1>Lorem 2</h1>
-                  <button type="button" class="btn btn-sm btn-success">Take History</button>
-                </div> 
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias dolores et adipisci ab tempora maxime cum in, repellat earum optio alias illo culpa eum, amet sed blanditiis sit. Voluptate, ab!</p>
-
-              </div>
-              <div class="tab-pane fade" id="dolor" role="tabpanel">
-                <h1>Dolor</h1>
-
-                <p>Ut eo.</p>
-              </div>
-              <div class="tab-pane fade" id="sit-amet" role="tabpanel">
-                <h1>Sit Amet</h1>
-
-                <p>Afdfd</p>
-              </div>
-            </div>
-          </div> 
-        </div>
-      </div>
+          <table class="table border_t5 table-hover">
+           <thead>
+            <tr>
+             <th width="10%">S.NO</th>
+             <th width="30%">Name</th>
+             <th width="20%">Phone Number</th>
+             <th width="20%">Gender</th>
+             <th width="20%">Appointment Time</th>
+           </tr>
+         </thead>
+         <tbody>
+          <tr>
+            <td>1</td> 
+            <td>Ali</td> 
+            <td>0300</td> 
+            <td>1: 00 pm</td> 
+            <td class="position_relative"> 
+            <button type="button" class="btn btn-sm btn-primary" ng-click="viewHistory()">View History</button>            
+            <button type="button" class="btn btn-sm btn-success" ng-click="takeHistory()">Take History</button>
+            </td>
+          </tr>
+           <tr>
+            <td>2</td> 
+            <td>Shahid</td> 
+            <td>0300</td> 
+            <td>1: 00 pm</td> 
+            <td class="position_relative"> 
+            <button type="button" class="btn btn-sm btn-primary" ng-click="viewHistory()">View History</button>            
+            <button type="button" class="btn btn-sm btn-success" ng-click="takeHistory()">Take History</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
+</div>
 </div>
 
 <!-- Right Panel -->

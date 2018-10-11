@@ -22,35 +22,54 @@ app.controller('drContoller' ,function ($scope, $http, CONFIG,toastr,ModalServic
                  toastr.error("Error");
             });
 
-     };*/
-	 
+          };*/
+
 /*     $scope.reset = function () {
       $scope.formData = {};
       $scope.reg_form.$setPristine();
     }*/
-     $scope.takeHistory = function(){
-     console.log("kfdk");
-       ModalService.showModal({
+    $scope.takeHistory = function(){
+     console.log("takeHistory");
+     ModalService.showModal({
        templateUrl: CONFIG.APIURL + "ng/views/partial/take-historymodal.html",
        controller: "closeContoller",
        bodyClass: "lg-modal",
 
-     resolve: {
-       parentScope : function(){
-       return $scope
-     }
-     },
+       resolve: {
+         parentScope : function(){
+           return $scope
+         }
+       },
        preClose: (modal) => { modal.element.modal('hide'); }
-      }).then(function(modal) {
+     }).then(function(modal) {
        modal.element.modal();
        modal.close.then(function(result) {
          $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
        });
-    });
-  };
+     });
+   };
+   $scope.viewHistory = function(){
+     console.log("viewHistory");
+     ModalService.showModal({
+       templateUrl: CONFIG.APIURL + "ng/views/partial/view-historymodal.html",
+       controller: "closeContoller",
+       bodyClass: "lg-modal",
 
-  });
+       resolve: {
+         parentScope : function(){
+           return $scope
+         }
+       },
+       preClose: (modal) => { modal.element.modal('hide'); }
+     }).then(function(modal) {
+       modal.element.modal();
+       modal.close.then(function(result) {
+         $scope.yesNoResult = result ? "You said Yes" : "You didn't say Yes";
+       });
+     });
+   };
+
+ });
 app.controller('closeContoller' ,function ($scope, $http, CONFIG,toastr,ModalService) {
-  });
+});
 
-  
